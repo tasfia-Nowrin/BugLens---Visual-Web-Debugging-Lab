@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="BugLens is a visual web debugging lab for learning how common CSS layout bugs happen and how to fix them." />
+    <title>BugLens — Visual Web Debugging Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="BugLens home">
+                <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+                <span>Bug<span class="brand-accent">Lens</span><small>VISUAL DEBUGGING LAB</small></span>
+            </a>
+            <div class="topbar-right">
+                <span class="status-dot"></span>
+                <span class="topbar-label">FRONTEND LAB</span>
+                <span class="version-pill">v0.1</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-copy">
+                    <div class="eyebrow"><span class="eyebrow-line"></span> DEBUG VISUALLY. LEARN DEEPLY.</div>
+                    <h1>Find the bug.<br /><span>Understand the fix.</span></h1>
+                    <p>Explore common layout issues, inspect what went wrong, and learn how a small CSS change can make
+                        a big difference.</p>
+                    <div class="hero-tags">
+                        <span><i class="tag-dot cyan"></i> Visual diagnosis</span>
+                        <span><i class="tag-dot violet"></i> CSS learning</span>
+                        <span><i class="tag-dot green"></i> Before / after</span>
+                    </div>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="art-orbit orbit-one"></div>
+                    <div class="art-orbit orbit-two"></div>
+                    <div class="art-window">
+                        <div class="art-window-bar"><b></b><b></b><b></b><span>layout.css</span></div>
+                        <div class="art-code">
+                            <span class="code-muted">01</span> <span class="code-purple">.container</span>
+                            <span>{</span><br />
+                            <span class="code-muted">02</span> &nbsp;&nbsp;<span class="code-blue">display</span>: <span
+                                class="code-orange">flex</span>;<br />
+                            <span class="code-muted">03</span> &nbsp;&nbsp;<span class="code-blue">gap</span>: <span
+                                class="code-orange">24px</span>;<br />
+                            <span class="code-muted">04</span> <span>}</span><br />
+                            <span class="code-muted">05</span><br />
+                            <span class="code-muted">06</span> <span class="code-comment">/* inspect → understand → fix
+                                */</span>
+                        </div>
+                        <div class="art-scan"><span>!</span> Layout issue detected</div>
+                    </div>
+                    <div class="floating-chip chip-top"><span class="chip-icon">⌘</span> Inspect layout</div>
+                    <div class="floating-chip chip-bottom"><span class="chip-check">✓</span> Fix verified</div>
+                </div>
+            </section>
+
+            <section class="workspace-section">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">01 / CHOOSE A SCENARIO</div>
+                        <h2>What are we debugging today?</h2>
+                    </div>
+                    <span class="demo-badge"><span></span> INTERACTIVE DEMO</span>
+                </div>
+
+                <div class="scenario-grid" role="group" aria-label="Choose a bug scenario">
+                    <button class="scenario-card active" data-scenario="overflow" aria-pressed="true">
+                        <span class="scenario-icon icon-overflow">↔</span>
+                        <span class="scenario-copy"><strong>Horizontal overflow</strong><small>Content spills beyond the
+                                page</small></span>
+                        <span class="scenario-arrow">↗</span>
+                    </button>
+                    <button class="scenario-card" data-scenario="alignment" aria-pressed="false">
+                        <span class="scenario-icon icon-alignment">☷</span>
+                        <span class="scenario-copy"><strong>Flex alignment</strong><small>Items don't line up
+                                correctly</small></span>
+                        <span class="scenario-arrow">↗</span>
+                    </button>
+                    <button class="scenario-card" data-scenario="boxmodel" aria-pressed="false">
+                        <span class="scenario-icon icon-boxmodel">▣</span>
+                        <span class="scenario-copy"><strong>Box model</strong><small>Element is larger than
+                                expected</small></span>
+                        <span class="scenario-arrow">↗</span>
+                    </button>
+                </div>
+
+                <div class="workspace-grid">
+                    <section class="panel preview-panel">
+                        <div class="panel-header">
+                            <div><span class="panel-kicker">02 / LIVE PREVIEW</span>
+                                <h3>Browser canvas</h3>
+                            </div>
+                            <div class="viewport-controls" aria-label="Preview width">
+                                <button class="viewport-btn active" data-width="desktop" aria-pressed="true"
+                                    title="Desktop viewport">▰ <span>Desktop</span></button>
+                                <button class="viewport-btn" data-width="tablet" aria-pressed="false"
+                                    title="Tablet viewport">▯ <span>Tablet</span></button>
+                                <button class="viewport-btn" data-width="mobile" aria-pressed="false"
+                                    title="Mobile viewport">▯ <span>Mobile</span></button>
+                            </div>
+                        </div>
+                        <div class="browser-toolbar">
+                            <div class="browser-dots"><i></i><i></i><i></i></div>
+                            <div class="address-bar"><span>⌕</span> buglens.local / demo</div>
+                            <span class="toolbar-menu">•••</span>
+                        </div>
+                        <div class="preview-stage">
+                            <div id="previewFrame" class="preview-frame desktop">
+                                <div id="samplePage" class="sample-page bug-overflow">
+                                    <div class="sample-nav"><span
+                                            class="sample-logo">NORTHSTAR</span><span>Work</span><span>About</span><span>Contact</span>
+                                    </div>
+                                    <div class="sample-hero">
+                                        <div class="sample-kicker">DESIGN THAT MOVES YOU</div>
+                                        <h4 id="sampleTitle">Make room<br />for better ideas.</h4>
+                                        <p>We help thoughtful teams turn ambitious ideas into useful digital
+                                            experiences.</p>
+                                        <button class="sample-cta">Explore our work <span>↗</span></button>
+                                    </div>
+                                    <div class="sample-cards">
+                                        <div><span>01</span><b>Strategy</b><small>Find the right direction.</small>
+                                        </div>
+                                        <div><span>02</span><b>Design</b><small>Make it feel effortless.</small></div>
+                                        <div><span>03</span><b>Build</b><small>Bring it to life.</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-footer"><span><i class="mini-pulse"></i> Sample page loaded</span><span
+                                id="viewportLabel">Viewport: 100%</span></div>
+                    </section>
+
+                    <aside class="panel diagnosis-panel">
+                        <div class="panel-header">
+                            <div><span class="panel-kicker">03 / DIAGNOSIS</span>
+                                <h3>Bug report</h3>
+                            </div>
+                            <span id="severityBadge" class="severity high">HIGH</span>
+                        </div>
+                        <div class="diagnosis-content">
+                            <div class="diagnosis-symbol" id="diagnosisSymbol">↔</div>
+                            <h4 id="diagnosisTitle">Horizontal overflow detected</h4>
+                            <p id="diagnosisDescription">A child element is wider than its available space, causing the
+                                page to scroll sideways.</p>
+                            <div class="diagnosis-divider"></div>
+                            <div class="report-label">LIKELY CAUSE</div>
+                            <div class="cause-code" id="causeCode">width: 1200px;</div>
+                            <p class="cause-explanation" id="causeExplanation">A fixed width can exceed a smaller
+                                viewport. The element cannot shrink to fit the screen.</p>
+                            <div class="report-label">SUGGESTED FIX</div>
+                            <div class="fix-code" id="fixCode">max-width: 100%;<br />box-sizing: border-box;</div>
+                            <button id="applyFixBtn" class="apply-fix-btn"><span>✦</span> Apply suggested fix <span
+                                    class="button-arrow">→</span></button>
+                            <p class="prototype-note">Demo diagnosis for selected scenarios. A full DOM-based diagnostic
+                                engine will be added in the next build stage.</p>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="learning-strip">
+                <div class="learning-icon">✳</div>
+                <div><span class="panel-kicker">THE DEBUGGING LOOP</span>
+                    <h3>Observe <span>→</span> Diagnose <span>→</span> Fix <span>→</span> Verify</h3>
+                    <p>Good debugging is not just changing code. It is understanding the cause and checking the result.
+                    </p>
+                </div>
+                <div class="loop-count"><strong>01</strong><small>LEARN BY DOING</small></div>
+            </section>
+        </main>
+
+        <footer class="footer"><span>© 2026 BugLens Lab</span><span>Built for curious frontend developers
+                <b>✦</b></span><span>HTML · CSS · Tailwind · JavaScript</span></footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
